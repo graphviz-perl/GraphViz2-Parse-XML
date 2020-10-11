@@ -14,28 +14,11 @@
         use GraphViz2;
         use GraphViz2::Parse::XML;
 
-        use Log::Handler;
-
-        # ------------------------------------------------
-
-        my($logger) = Log::Handler -> new;
-
-        $logger -> add
-                (
-                 screen =>
-                 {
-                         maxlevel       => 'debug',
-                         message_layout => '%m',
-                         minlevel       => 'error',
-                 }
-                );
-
         my($graph) = GraphViz2 -> new
                 (
                  edge   => {color => 'grey'},
                  global => {directed => 1},
                  graph  => {rankdir => 'TB'},
-                 logger => $logger,
                  node   => {color => 'blue', shape => 'oval'},
                 );
         my($g) = GraphViz2::Parse::XML -> new(graph => $graph);
@@ -71,8 +54,7 @@ Key-value pairs accepted in the parameter list:
 
     This option specifies the GraphViz2 object to use. This allows you to configure it as desired.
 
-    The default is GraphViz2 -> new. The default attributes are the same as in the synopsis, above,
-    except for the logger of course, which defaults to ''.
+    The default is GraphViz2 -> new. The default attributes are the same as in the synopsis, above.
 
     This key is optional.
 
